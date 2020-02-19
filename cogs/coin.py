@@ -1,11 +1,20 @@
 from random import randint
-
+import asyncio
+import datetime
 from discord.ext import commands
 
+# Followers of the Crafting Table #general id: 614889263196143742
+# Followers of the Crafting Table Guild id: 614889263183560840
 
 class Coin(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
+        self.default_guild_id = 614889263183560840 
+        self.default_channel_id = 614889263196143742 # these vars are to be used as placeholders before there are universal channels - Tasni/BTMI
+    @commands.Cog.listener()
+    async def on_ready(self):
+        while True:
+            pass
 
     @commands.Cog.listener()
     async def on_message(self, message):
@@ -22,7 +31,6 @@ class Coin(commands.Cog):
                 message.author.id + ", you just earned a crafting table!"
             )
             self.bot.save_coindb()
-
-
+            
 def setup(bot):
     bot.add_cog(Coin(bot))
